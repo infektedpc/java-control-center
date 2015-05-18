@@ -1,0 +1,51 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,46,53)
+  Text = ("Java Control Center")
+  Icon = Picture["icon:/64/component"]
+  { Console Button
+    MoveScaled(0,21,46,4)
+    Text = ("Console")
+  }
+  { Mission_Control Button
+    MoveScaled(0,25,46,4)
+    Text = ("Mission Control")
+  }
+  { Plugin_Control_Panel Button
+    MoveScaled(0,29,46,4)
+    Text = ("Plugin Control Panel")
+  }
+  { Policy_Tool Button
+    MoveScaled(0,33,46,4)
+    Text = ("Policy Tool")
+  }
+  { Runtime Button
+    MoveScaled(0,37,46,4)
+    Text = ("Runtime")
+  }
+  { Visual_VM Button
+    MoveScaled(0,41,46,4)
+    Text = ("Visual VM")
+  }
+  { Web_Start Button
+    MoveScaled(0,45,46,4)
+    Text = ("Web Start")
+  }
+  { PictureBox1 PictureBox
+    MoveScaled(0,0,46,21)
+    Picture = Picture["java-oracle.png"]
+    Stretch = True
+  }
+  { ComboBox1 ComboBox
+    MoveScaled(15,49,17,4)
+    ReadOnly = True
+  }
+  { Button1 Button
+    MoveScaled(32,49,14,4)
+    Text = ("Change")
+  }
+  { Label1 Label
+    MoveScaled(1,49,14,4)
+  }
+}

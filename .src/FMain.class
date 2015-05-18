@@ -1,0 +1,234 @@
+' Gambas class file
+
+Public javaversion As String
+Public javaversion_short As String
+
+Public Sub _new()
+
+  Me.Center
+
+End
+
+Public Sub Form_Open()
+
+  Dim javaversionslist As String
+  Dim Versions As Array
+  Dim Version As String
+  
+  Shell "java -version 2>&1 | awk '/version/{print $NF}'" To javaversion
+  javaversion = Replace(javaversion, Chr(34), Null)
+  Label1.Text = "Default: " & Left(javaversion, 5)
+  javaversion_short = Left(javaversion, 3)
+  
+  
+  Shell "update-java-alternatives -l | awk '/java-/{print $1}'" To javaversionslist
+  If Not javaversionslist = "" Then
+    Versions = Split(javaversionslist, Chr(10))
+    For Each Version In Versions
+      Version = Replace(Version, "/n", Null)
+      If Not Version = "" Then
+        ComboBox1.Add(Version)
+      Endif
+    Next
+  End If
+
+End
+
+Public Sub Console_Click()
+  
+  '
+  If javaversion_short = "1.6" Then
+    Shell "/usr/lib/jvm/java-6-oracle/bin/jconsole"
+  Endif
+  
+  '
+  If javaversion_short = "1.7" Then 
+    Shell "/usr/lib/jvm/java-7-oracle/bin/jconsole"
+  Endif
+  
+  '
+  If javaversion_short = "1.8" Then
+    Shell "/usr/lib/jvm/java-8-oracle/bin/jconsole"
+  Endif
+  
+  '
+  If javaversion_short = "1.9" Then
+    Shell "/usr/lib/jvm/java-9-oracle/bin/jconsole"
+  Endif
+  
+End
+
+Public Sub Mission_Control_Click()
+  
+  '
+  If javaversion_short = "1.6" Then
+    Shell "/usr/lib/jvm/java-6-oracle/bin/jmc"
+    
+  Endif
+  
+  '
+  If javaversion_short = "1.7" Then
+    Shell "/usr/lib/jvm/java-7-oracle/bin/jmc"
+  Endif
+  
+  '
+  If javaversion_short = "1.8" Then
+    Shell "/usr/lib/jvm/java-8-oracle/bin/jmc"
+  Endif
+  
+  '
+  If javaversion_short = "1.9" Then
+    Shell "/usr/lib/jvm/java-9-oracle/bin/jmc"
+  Endif
+  
+End
+
+Public Sub Plugin_Control_Panel_Click()
+  
+  '
+  If javaversion_short = "1.6" Then
+    Shell "/usr/lib/jvm/java-6-oracle/bin/ControlPanel"
+  Endif
+  
+  '
+  If javaversion_short = "1.7" Then
+    Shell "/usr/lib/jvm/java-7-oracle/bin/ControlPanel"
+  Endif
+  
+  '
+  If javaversion_short = "1.8" Then
+    Shell "/usr/lib/jvm/java-8-oracle/bin/ControlPanel"
+  Endif
+  
+  '
+  If javaversion_short = "1.9" Then
+    Shell "/usr/lib/jvm/java-9-oracle/bin/ControlPanel"
+  Endif
+  
+End
+
+Public Sub Policy_Tool_Click()
+  
+  '
+  If javaversion_short = "1.6" Then
+    Shell "/usr/lib/jvm/java-6-oracle/bin/policytool"
+  Endif
+  
+  '
+  If javaversion_short = "1.7" Then
+    Shell "/usr/lib/jvm/java-7-oracle/bin/policytool"
+  Endif
+  
+  '
+  If javaversion_short = "1.8" Then
+    Shell "/usr/lib/jvm/java-8-oracle/bin/policytool"
+  Endif
+  
+  '
+  If javaversion_short = "1.9" Then
+    Shell "/usr/lib/jvm/java-9-oracle/bin/policytool"
+  Endif
+  
+End
+
+Public Sub Runtime_Click()
+  
+  '
+  If javaversion_short = "1.6" Then
+    Shell "/usr/lib/jvm/java-6-oracle/bin/java -jar"
+  Endif
+  
+  '
+  If javaversion_short = "1.7" Then
+    Shell "/usr/lib/jvm/java-7-oracle/bin/java -jar"
+  Endif
+  
+  '
+  If javaversion_short = "1.8" Then
+    Shell "/usr/lib/jvm/java-8-oracle/bin/java -jar"
+  Endif
+  
+  '
+  If javaversion_short = "1.9" Then
+    Shell "/usr/lib/jvm/java-9-oracle/bin/java -jar"
+  Endif
+  
+End
+
+Public Sub Visual_VM_Click()
+  
+  '
+  If javaversion_short = "1.6" Then
+    Shell "/usr/lib/jvm/java-6-oracle/bin/jvisualvm"
+  Endif
+  
+  '
+  If javaversion_short = "1.7" Then
+    Shell "/usr/lib/jvm/java-7-oracle/bin/jvisualvm"
+  Endif
+  
+  '
+  If javaversion_short = "1.8" Then
+    Shell "/usr/lib/jvm/java-8-oracle/bin/jvisualvm"
+  Endif
+  
+  '
+  If javaversion_short = "1.9" Then
+    Shell "/usr/lib/jvm/java-9-oracle/bin/jvisualvm"
+    '
+  Endif
+  
+End
+
+Public Sub Web_Start_Click()
+  
+  '
+  If javaversion_short = "1.6" Then
+    Shell "/usr/lib/jvm/java-6-oracle/jre/bin/javaws"
+  Endif
+
+  '
+  If javaversion_short = "1.7" Then
+    Shell "/usr/lib/jvm/java-7-oracle/jre/bin/javaws"
+  Endif
+  
+  '
+  If javaversion_short = "1.8" Then
+    Shell "/usr/lib/jvm/java-8-oracle/jre/bin/javaws"
+  Endif
+  
+  '
+  If javaversion_short = "1.9" Then
+    Shell "/usr/lib/jvm/java-9-oracle/jre/bin/javaws"
+  Endif
+  
+End
+
+Public Sub Button1_Click()
+  Me.Text = ComboBox1.Text
+  If ComboBox1.Text = "java-6-oracle" Then 
+    Shell "pkexec update-java-alternatives -s java-6-oracle" Wait
+  Endif
+  
+  If ComboBox1.Text = "java-7-oracle" Then 
+    Shell "pkexec update-java-alternatives -s java-7-oracle" Wait
+
+  Endif
+  
+  If ComboBox1.Text = "java-8-oracle" Then 
+    Shell "pkexec update-java-alternatives -s java-8-oracle" Wait
+  Endif
+  
+  If ComboBox1.Text = "java-9-oracle" Then 
+    Shell "pkexec update-java-alternatives -s java-9-oracle" Wait
+    
+  Endif
+  
+ Wait 0.1
+
+  Shell "java -version 2>&1 | awk '/version/{print $NF}'" To javaversion
+  javaversion = Replace(javaversion, Chr(34), Null)
+  Label1.Text = "Default: " & Left(javaversion, 5)
+  javaversion_short = Left(javaversion, 3)
+   
+End
